@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package protos;
+
+
+// 1 导入 gateway 相关的proto 以及 swagger 相关的 proto
+import "third_party/googleapis/google/api/annotations.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+
+// 2 定义 swagger 相关的内容
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+  info: {
+		title: "grpc gateway sample";
+		version: "1.0";	
+		license: {
+			name: "MIT";			
+		};
+  };
+  schemes: HTTP;
+};
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply) {
+      // 3 标识接口路由
+      option (google.api.http) = {
+                post: "/hello_world"
+                body: "*"
+            };
+  }
+}
+ 
+message HelloRequest {
+  string name = 1;
+}
+ 
+message HelloReply {
+  string message = 1;
+}
