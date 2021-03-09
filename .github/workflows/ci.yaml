@@ -18,4 +18,4 @@ jobs:
         go-version: 1.15
 
     - name: GitTest
-      run: git config --global user.name "youname" && git config --global user.password `cat token` && git clone https://github.com/ecnupet/proto.git
+      run: git config --global user.name "tonyshanc" && git config --global user.password `cat token` && git clone https://github.com/ecnupet/proto.git
