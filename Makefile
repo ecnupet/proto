@@ -1,4 +1,3 @@
-.PHONY: gen_swagger
 swagger_gen:
 	protoc \
 	-I$(GOPATH)/src/grpc-gateway \
