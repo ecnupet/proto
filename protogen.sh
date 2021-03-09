@@ -1,12 +1,13 @@
 #!/bin/bash
 
 set -e
-
+echo -e "\033[0;32mgit config\033[0m"
 export CI_PUSH_TOKEN=78125d8696da6829459c1e9074731b37709b486a
 git config --global user.name "tonyshanc"
 git config --global user.email "845700113@qq.com"
 git config --global push.default simple
 git remote set-url origin https://tonyshanc:${CI_PUSH_TOKEN}@git.github.com:ecnupet/proto.git
+git fetch
 latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
 git_head=`git rev-parse --short HEAD`
 
