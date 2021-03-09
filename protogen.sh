@@ -45,10 +45,10 @@ protoc -I/usr/local/include -I. \
 	-I$PROTO_PATH \
 	-I$GOPATH/src/github.com/googleapis/googleapis \
 	-I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway \
-	--go_out=. grpc/*.proto
+	--go_out=. *.proto
 pwd
 ls -al
-git add -f **/*.pb.go 
+git add -f *.pb.go 
 
 changes=`git diff --name-only --cached | wc -l | tr -d '[:space:]'`
 if [[ $changes > 0 ]]; then
