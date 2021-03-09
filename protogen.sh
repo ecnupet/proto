@@ -8,6 +8,8 @@ git config --global user.email "845700113@qq.com"
 git config --global push.default simple
 git remote set-url origin https://tonyshanc:${CI_PUSH_TOKEN}@github.com/ecnupet/proto.git
 git fetch origin main
+echo "list tag"
+git tag
 latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
 git_head=`git rev-parse --short HEAD`
 
