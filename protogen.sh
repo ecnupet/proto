@@ -10,7 +10,7 @@ git config --global user.password ${CI_PUSH_TOKEN}
 git config --global user.email "845700113@qq.com"
 git config --global push.default simple
 git remote set-url origin https://@github.com/ecnupet/proto.git
-git clone git@github.com:ecnupet/proto.git
+git clone https://github.com/ecnupet/proto.git
 cd proto
 git fetch origin main
 echo "list tag"
@@ -36,8 +36,8 @@ fi
 # createsrc/google/api for annotiation
 GO111MODULE=on go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 GO111MODULE=on go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
-mkdir -p $GOPATH/src/github.com/ecnupet/proto && git clone git@github.com:ecnupet/proto.git $GOPATH/src/github.com/ecnupet/proto
-mkdir -p $GOPATH/src/github.com/googleapis && git clone -b master git@git.llsapp.com:common/googleapislite $GOPATH/src/github.com/googleapis/googleapis
+mkdir -p $GOPATH/src/github.com/ecnupet/proto && git clone https://github.com/ecnupet/proto.git $GOPATH/src/github.com/ecnupet/proto
+mkdir -p $GOPATH/src/github.com/googleapis && git clone https://github.com/googleapis/googleapis.git $GOPATH/src/github.com/googleapis/googleapis
 mkdir -p $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway && git clone -b v1 https://github.com/grpc-ecosystem/grpc-gateway $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway
 
 # install protoc
