@@ -9,7 +9,7 @@ git config --global user.name "TonyShanc"
 git config --global user.password ${CI_PUSH_TOKEN}
 git config --global user.email "845700113@qq.com"
 git config --global push.default simple
-git remote set-url origin https://@github.com/ecnupet/proto.git
+git remote set-url origin https://github.com/ecnupet/proto.git
 git clone https://github.com/ecnupet/proto.git
 cd proto
 git fetch origin main
