@@ -4,9 +4,10 @@ set -e
 echo -e "\033[0;32mgit config\033[0m"
 git config --global user.name "tonyshanc"
 git config --global user.email "845700113@qq.com"
+git config --global --add url."git@github.com:".insteadOf "https://github.com"
 git clone https://github.com/ecnupet/proto.git
 git config --global push.default simple
-git remote set-url origin https://tonyshanc:78125d8696da6829459c1e9074731b37709b486a@github.com/ecnupet/proto.git
+git remote add origin https://tonyshanc:78125d8696da6829459c1e9074731b37709b486a@github.com/ecnupet/proto.git
 cd proto
 git fetch origin main
 echo "list tag"
