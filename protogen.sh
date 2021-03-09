@@ -31,7 +31,7 @@ fi
 export GOPATH=/home/runner/go
 export PROTO_PATH=$(GOPATH)/src/github.com/ecnupet/proto
 GO111MODULE=on go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
-GO111MODULE=on go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+# 1MODULE=on go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 mkdir $GOPATH/src && chmod 777 $GOPATH/src
 mkdir -p $GOPATH/src/github.com/ecnupet/proto && git clone https://github.com/ecnupet/proto.git $GOPATH/src/github.com/ecnupet/proto
 mkdir -p $GOPATH/src/github.com/googleapis && git clone https://github.com/googleapis/googleapis.git $GOPATH/src/github.com/googleapis/googleapis
