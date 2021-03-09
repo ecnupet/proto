@@ -29,7 +29,7 @@ fi
 
 # createsrc/google/api for annotiation
 export GOPATH=/home/runner/go
-export PROTO_PATH=$(GOPATH)/src/github.com/ecnupet/proto
+export PROTO_PATH=$GOPATH/src/github.com/ecnupet/proto
 GO111MODULE=on go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 # 1MODULE=on go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 mkdir $GOPATH/src && chmod 777 $GOPATH/src
