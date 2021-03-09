@@ -3,10 +3,11 @@
 set -e
 echo -e "\033[0;32mgit config\033[0m"
 # 78125d8696da6829459c1e9074731b37709b486a
-export CI_PUSH_TOKEN=sc980802
+export CI_PUSH_TOKEN=78125d8696da6829459c1e9074731b37709b486a
 git config --global user.name "TonyShanc"
 git config --global user.email "845700113@qq.com"
 git config --global push.default simple
+echo ${CI_PUSH_TOKEN}
 git remote set-url origin https://TonyShanc:${CI_PUSH_TOKEN}@github.com/ecnupet/proto.git
 git fetch origin main
 echo "list tag"
