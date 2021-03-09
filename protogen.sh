@@ -6,10 +6,12 @@ echo -e "\033[0;32mgit config\033[0m"
 export CI_PUSH_TOKEN=78125d8696da6829459c1e9074731b37709b486a
 git config --global --add url."git@github.com:".insteadOf "https://github.com"
 git config --global user.name "TonyShanc"
+git config --global user.password ${CI_PUSH_TOKEN}
 git config --global user.email "845700113@qq.com"
 git config --global push.default simple
-echo ${CI_PUSH_TOKEN}
 git remote set-url origin https://@github.com/ecnupet/proto.git
+git clone git@github.com:ecnupet/proto.git
+cd proto
 git fetch origin main
 echo "list tag"
 git tag
@@ -31,11 +33,25 @@ if [[ $commits > $max_commits ]]; then
     git commit -m "$last_commit_msg"
 fi
 
+# createsrc/google/api for annotiation
+GO111MODULE=on go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
+GO111MODULE=on go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+mkdir -p $GOPATH/src/github.com/ecnupet/proto && git clone git@github.com:ecnupet/proto.git $GOPATH/src/github.com/ecnupet/proto
+mkdir -p $GOPATH/src/github.com/googleapis && git clone -b master git@git.llsapp.com:common/googleapislite $GOPATH/src/github.com/googleapis/googleapis
+mkdir -p $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway && git clone -b v1 https://github.com/grpc-ecosystem/grpc-gateway $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway
+
 # install protoc
-GO111MODULE=on go get github.com/golang/protobuf
 GO111MODULE=on go get github.com/golang/protobuf/protoc-gen-go
 
-protoc --go_out=. grpc/*.proto
+# protoc --go_out=. grpc/*.proto
+
+export PROTO_PATH=$(GOPATH)/src/github.com/ecnupet/proto
+protoc -I/usr/local/include -I. \
+	-I$(PROTO_PATH) \
+	-I$(GOPATH)/src/github.com/googleapis/googleapis \
+	-I$(GOPATH)/src/github.com/grpc-ecosystem/grpc-gateway \
+	--go_out=. grpc/*.proto
+
 git add -f **/*.pb.go 
 
 changes=`git diff --name-only --cached | wc -l | tr -d '[:space:]'`
