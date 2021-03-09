@@ -32,7 +32,6 @@ export GOPATH=/home/runner/go
 export PROTO_PATH=$(GOPATH)/src/github.com/ecnupet/proto
 GO111MODULE=on go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 GO111MODULE=on go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
-go env
 mkdir $GOPATH/src && chmod 777 $GOPATH/src
 mkdir -p $GOPATH/src/github.com/ecnupet/proto && git clone https://github.com/ecnupet/proto.git $GOPATH/src/github.com/ecnupet/proto
 mkdir -p $GOPATH/src/github.com/googleapis && git clone https://github.com/googleapis/googleapis.git $GOPATH/src/github.com/googleapis/googleapis
@@ -43,9 +42,9 @@ GO111MODULE=on go get github.com/golang/protobuf/protoc-gen-go
 
 # protoc --go_out=. grpc/*.proto
 protoc -I/usr/local/include -I. \
-	-I$(PROTO_PATH) \
-	-I$(GOPATH)/src/github.com/googleapis/googleapis \
-	-I$(GOPATH)/src/github.com/grpc-ecosystem/grpc-gateway \
+	-I$PROTO_PATH \
+	-I$GOPATH/src/github.com/googleapis/googleapis \
+	-I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway \
 	--go_out=. grpc/*.proto
 
 git add -f **/*.pb.go 
