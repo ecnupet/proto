@@ -44,7 +44,6 @@ mkdir -p $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway && git clone -b v1 h
 GO111MODULE=on go get github.com/golang/protobuf/protoc-gen-go
 
 # protoc --go_out=. grpc/*.proto
-
 export PROTO_PATH=$(GOPATH)/src/github.com/ecnupet/proto
 protoc -I/usr/local/include -I. \
 	-I$(PROTO_PATH) \
