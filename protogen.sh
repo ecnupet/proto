@@ -26,7 +26,7 @@ if [[ $commits > $max_commits ]]; then
     git reset --soft HEAD~$((commits-2))  # Squash down to the first (huge) generation commit
     git commit -m "$last_commit_msg"
 fi
-
+pwd
 # createsrc/google/api for annotiation
 export GOPATH=/home/runner/go
 export PROTO_PATH=$GOPATH/src/github.com/ecnupet/proto
@@ -46,7 +46,7 @@ protoc -I/usr/local/include -I. \
 	-I$GOPATH/src/github.com/googleapis/googleapis \
 	-I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway \
 	--go_out=. grpc/*.proto
-
+pwd
 git add -f **/*.pb.go 
 
 changes=`git diff --name-only --cached | wc -l | tr -d '[:space:]'`
