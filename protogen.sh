@@ -2,8 +2,6 @@
 
 set -e
 echo -e "\033[0;32mgit config\033[0m"
-# 78125d8696da6829459c1e9074731b37709b486a
-export CI_PUSH_TOKEN=78125d8696da6829459c1e9074731b37709b486a
 git config --global user.name "TonyShanc"
 git config --global user.email "845700113@qq.com"
 git clone https://github.com/ecnupet/proto.git
@@ -30,10 +28,12 @@ if [[ $commits > $max_commits ]]; then
 fi
 
 # createsrc/google/api for annotiation
+export GOPATH=/home/runner/go
+export PROTO_PATH=$(GOPATH)/src/github.com/ecnupet/proto
 GO111MODULE=on go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 GO111MODULE=on go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 go env
-chmod 777 $GOPATH/src
+mkdir $GOPATH/src && chmod 777 $GOPATH/src
 mkdir -p $GOPATH/src/github.com/ecnupet/proto && git clone https://github.com/ecnupet/proto.git $GOPATH/src/github.com/ecnupet/proto
 mkdir -p $GOPATH/src/github.com/googleapis && git clone https://github.com/googleapis/googleapis.git $GOPATH/src/github.com/googleapis/googleapis
 mkdir -p $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway && git clone -b v1 https://github.com/grpc-ecosystem/grpc-gateway $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway
@@ -42,7 +42,6 @@ mkdir -p $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway && git clone -b v1 h
 GO111MODULE=on go get github.com/golang/protobuf/protoc-gen-go
 
 # protoc --go_out=. grpc/*.proto
-export PROTO_PATH=$(GOPATH)/src/github.com/ecnupet/proto
 protoc -I/usr/local/include -I. \
 	-I$(PROTO_PATH) \
 	-I$(GOPATH)/src/github.com/googleapis/googleapis \
