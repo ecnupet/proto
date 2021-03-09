@@ -4,6 +4,7 @@ set -e
 echo -e "\033[0;32mgit config\033[0m"
 # 78125d8696da6829459c1e9074731b37709b486a
 export CI_PUSH_TOKEN=78125d8696da6829459c1e9074731b37709b486a
+git config --global --add url."git@github.com:".insteadOf "https://github.com"
 git config --global user.name "TonyShanc"
 git config --global user.email "845700113@qq.com"
 git config --global push.default simple
