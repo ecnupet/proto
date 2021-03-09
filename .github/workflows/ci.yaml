@@ -19,4 +19,4 @@ jobs:
         go-version: 1.15
 
     - name: build_proto_and_release
-      run: scripts/protogen.sh
+      run: ./protogen.sh
