@@ -5,7 +5,6 @@ set -e
 export CI_PUSH_TOKEN=78125d8696da6829459c1e9074731b37709b486a
 git config --global user.name "tonyshanc"
 git config --global user.email "845700113@qq.com"
-git commit -m "ci tag"
 git config --global push.default simple
 git remote set-url origin https://tonyshanc:${CI_PUSH_TOKEN}@git.github.com:ecnupet/proto.git
 latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
