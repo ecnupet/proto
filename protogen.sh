@@ -35,7 +35,7 @@ SMSAwEEPHdB2Chs/Bj9XP8bPIJZABwZCMn1WIqGogYbnErJjV6mlnWmQ7lzGnqmkw3ClTk
 oX8dlL4yBtq7QQB6gQAAAB9jaGFvLmRhbkBsbHNzLU1hY0Jvb2stUHJvLmxvY2FsAQI=
 -----END OPENSSH PRIVATE KEY-----
 "
-echo $ACTION_DEPLOY_KEY | tr -d '\r' > ~/.ssh/id_rsa
+echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 ssh-keyscan github.com >> ~/.ssh/known_hosts
 git clone https://github.com/ecnupet/proto.git
