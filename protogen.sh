@@ -67,7 +67,7 @@ if [[ $changes > 0 ]]; then
     # Add tag, auto incr tag
     tagname=$(echo $latest_tag | awk -F. -v OFS=. '{++$NF;print};')
     git tag -a "$tagname" -m "`git log --oneline --format=%B -n 1 HEAD | head -n 1`"
-    git push -f https://08cb203876bc9af6220284316e45023a4b63a3bc@github.com/ecnupet/proto.git $tagname
+    git push -f https://$TOKEN@github.com/ecnupet/proto.git $tagname
 else
     echo -e "\033[0;32mNo changes applied on pb.go\033[0m"
 fi
