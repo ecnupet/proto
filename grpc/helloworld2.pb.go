@@ -7,8 +7,12 @@
 package test
 
 import (
+	context "context"
 	proto "github.com/golang/protobuf/proto"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -283,4 +287,86 @@ func file_grpc_helloworld2_proto_init() {
 	file_grpc_helloworld2_proto_rawDesc = nil
 	file_grpc_helloworld2_proto_goTypes = nil
 	file_grpc_helloworld2_proto_depIdxs = nil
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConnInterface
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion6
+
+// Greeter2Client is the client API for Greeter2 service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type Greeter2Client interface {
+	// Sends a greeting
+	SayHello(ctx context.Context, in *HelloRequest2, opts ...grpc.CallOption) (*HelloReply2, error)
+}
+
+type greeter2Client struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewGreeter2Client(cc grpc.ClientConnInterface) Greeter2Client {
+	return &greeter2Client{cc}
+}
+
+func (c *greeter2Client) SayHello(ctx context.Context, in *HelloRequest2, opts ...grpc.CallOption) (*HelloReply2, error) {
+	out := new(HelloReply2)
+	err := c.cc.Invoke(ctx, "/helloworld2.Greeter2/SayHello", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Greeter2Server is the server API for Greeter2 service.
+type Greeter2Server interface {
+	// Sends a greeting
+	SayHello(context.Context, *HelloRequest2) (*HelloReply2, error)
+}
+
+// UnimplementedGreeter2Server can be embedded to have forward compatible implementations.
+type UnimplementedGreeter2Server struct {
+}
+
+func (*UnimplementedGreeter2Server) SayHello(context.Context, *HelloRequest2) (*HelloReply2, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SayHello not implemented")
+}
+
+func RegisterGreeter2Server(s *grpc.Server, srv Greeter2Server) {
+	s.RegisterService(&_Greeter2_serviceDesc, srv)
+}
+
+func _Greeter2_SayHello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HelloRequest2)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(Greeter2Server).SayHello(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/helloworld2.Greeter2/SayHello",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(Greeter2Server).SayHello(ctx, req.(*HelloRequest2))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Greeter2_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "helloworld2.Greeter2",
+	HandlerType: (*Greeter2Server)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SayHello",
+			Handler:    _Greeter2_SayHello_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "grpc/helloworld2.proto",
 }
