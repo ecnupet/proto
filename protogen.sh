@@ -47,7 +47,7 @@ protoc -I/usr/local/include -I. \
 	-I$PROTO_PATH \
 	-I$GOPATH/src/github.com/googleapis/googleapis \
 	-I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway \
-	--go_out=grpc/. grpc/*.proto
+	--go_out=plugins=grpc:grpc/. grpc/*.proto
 ls -al
 git add -f **/*.pb.go
 
