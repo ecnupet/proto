@@ -49,7 +49,7 @@ protoc -I/usr/local/include -I. \
 	-I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway \
 	--go_out=grpc/. grpc/*.proto
 ls -al
-git add -f *.pb.go
+git add -f **/*.pb.go
 
 changes=`git diff --name-only --cached | wc -l | tr -d '[:space:]'`
 echo $changes
