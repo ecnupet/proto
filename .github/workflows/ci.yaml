@@ -22,5 +22,5 @@ jobs:
         version: '3.x'
     - name: build_proto_and_release
       env:
-        ACTION_DEPLOY_KEY: ${{ secrets.ci }}
+        ACTION_DEPLOY_KEY: ${{ secrets.CI }}
       run: chmod +x protogen.sh && ./protogen.sh
