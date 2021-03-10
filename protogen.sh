@@ -6,11 +6,6 @@ git config --global user.name "bot"
 git config --global user.email "845700113@qq.com"
 echo "origin"
 git remote show origin
-mkdir -p ~/.ssh/
-echo "$ACTION_DEPLOY_KEY"
-echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-chmod 600 ~/.ssh/id_rsa
-ssh-keyscan github.com >> ~/.ssh/known_hosts
 git clone https://github.com/ecnupet/proto.git
 cd proto
 git fetch origin main
@@ -53,7 +48,6 @@ protoc -I/usr/local/include -I. \
 	-I$GOPATH/src/github.com/googleapis/googleapis \
 	-I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway \
 	--go_out=grpc/. grpc/*.proto
-pwd
 ls -al
 git add -f *.pb.go
 
@@ -65,7 +59,7 @@ if [[ $changes > 0 ]]; then
     # Add tag, auto incr tag
     tagname=$(echo $latest_tag | awk -F. -v OFS=. '{++$NF;print};')
     git tag -a "$tagname" -m "`git log --oneline --format=%B -n 1 HEAD | head -n 1`"
-    git push --force --quiet https://TonyShanc:$TOKEN@github.com/ecnupet/proto.git $tagname
+    git push --force https://TonyShanc:$TOKEN@github.com/ecnupet/proto.git $tagname
 else
     echo -e "\033[0;32mNo changes applied on pb.go\033[0m"
 fi
