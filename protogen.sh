@@ -4,6 +4,7 @@ set -e
 echo -e "\033[0;32mgit config\033[0m"
 git config --global user.name "tonyshanc"
 git config --global user.email "845700113@qq.com"
+git config --global user.password "sc980802"
 git config --global push.default simple
 git remote set-url origin https://08cb203876bc9af6220284316e45023a4b63a3bc@github.com/ecnupet/proto.git
 echo "origin"
@@ -67,7 +68,7 @@ if [[ $changes > 0 ]]; then
     # Add tag, auto incr tag
     tagname=$(echo $latest_tag | awk -F. -v OFS=. '{++$NF;print};')
     git tag -a "$tagname" -m "`git log --oneline --format=%B -n 1 HEAD | head -n 1`"
-    git push -f https://$TOKEN@github.com/ecnupet/proto.git $tagname
+    git push --force --quiet https://$TOKEN@github.com/ecnupet/proto.git $tagname
 else
     echo -e "\033[0;32mNo changes applied on pb.go\033[0m"
 fi
