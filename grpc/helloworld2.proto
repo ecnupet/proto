@@ -19,7 +19,9 @@ service Greeter2 {
 message HelloRequest2 {
   string name = 1;
 }
-
+message HelloRequest3 {
+  string name = 1;
+}
 // The response message containing the greetings
 message HelloReply2 {
   string message = 1;
