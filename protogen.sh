@@ -4,7 +4,6 @@ set -e
 echo -e "\033[0;32mgit config\033[0m"
 git config --global user.name "bot"
 git config --global user.email "845700113@qq.com"
-git init
 echo "origin"
 git remote show origin
 mkdir -p ~/.ssh/
@@ -12,6 +11,8 @@ echo "$ACTION_DEPLOY_KEY"
 echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 ssh-keyscan github.com >> ~/.ssh/known_hosts
+git clone https://github.com/ecnupet/proto.git
+cd proto
 git fetch origin main
 echo "list tag"
 git tag
