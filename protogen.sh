@@ -52,7 +52,8 @@ ls -al
 git add -f *.pb.go
 
 changes=`git diff --name-only --cached | wc -l | tr -d '[:space:]'`
-if [[ $changes > 0 ]]; then
+echo changes
+if [[ $changes >= 0 ]]; then
     echo -e "\033[0;32mPush changes on pb.go\033[0m"
     git commit -m "Auto generated go source code based on $git_head"
 
