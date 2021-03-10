@@ -5,9 +5,9 @@ option go_package = ".;test";
 package helloworld2;
 import "google/api/annotations.proto";
 // The greeting service definition.
-service Greeter {
+service Greeter2 {
   // Sends a greeting
-  rpc SayHello(HelloRequest) returns (HelloReply) {
+  rpc SayHello(HelloRequest2) returns (HelloReply2) {
     option (google.api.http) = {
       post: "/v1/example/echo"
       body: "*"
@@ -16,11 +16,11 @@ service Greeter {
 }
 
 // The request message containing the user's name.
-message HelloRequest {
+message HelloRequest2 {
   string name = 1;
 }
 
 // The response message containing the greetings
-message HelloReply {
+message HelloReply2 {
   string message = 1;
 }
