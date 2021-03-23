@@ -12,6 +12,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Commit messager
+      run: chmod +x ./scripts/message.sh && ./scripts/message.sh
+      
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
