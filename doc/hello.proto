@@ -22,13 +22,13 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 service TmpLoser {
   rpc QuizCorrect(QuizCorrectRequest) returns (QuizCorrectResponse) {
     option (google.api.http) = {
-        post: "/api/doc/tl/quiz/correct"
+        post: "/api/tl/quiz/correct"
         body: "*"
     };
   }
   rpc QuizNew(QuizNewRequest) returns (QuizNewResponse) {
     option (google.api.http) = {
-        get: "/api/doc/tl/quiz/new"
+        get: "/api/tl/quiz/new"
     };
   }
 }
