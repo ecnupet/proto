@@ -8,7 +8,7 @@
     }
   },
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [
     "application/json"
@@ -69,12 +69,14 @@
         "parameters": [
           {
             "name": "user_name",
+            "description": "用户名 string.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "type",
+            "description": "试题类型 string.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -107,36 +109,45 @@
       "properties": {
         "history_id": {
           "type": "string",
-          "format": "uint64"
+          "format": "uint64",
+          "title": "历史记录id int"
         },
         "user_name": {
-          "type": "string"
+          "type": "string",
+          "title": "用户名 string"
         },
         "question_id": {
           "type": "string",
-          "format": "uint64"
+          "format": "uint64",
+          "title": "问题id int"
         },
         "choose": {
-          "type": "string"
+          "type": "string",
+          "title": "用户的选择 string 例如 ：“A”"
         },
         "quiz_id": {
           "type": "string",
-          "format": "uint64"
+          "format": "uint64",
+          "title": "测试试卷id int"
         },
         "order": {
           "type": "string",
-          "format": "uint64"
+          "format": "uint64",
+          "title": "顺序 int"
         },
         "correct": {
           "type": "string",
-          "format": "uint64"
+          "format": "uint64",
+          "title": "是否正确 1: 错误 1: 正确 2: 未选择"
         },
         "spend": {
           "type": "string",
-          "format": "uint64"
+          "format": "uint64",
+          "title": "答题花费的时间"
         },
         "created_at": {
-          "type": "string"
+          "type": "string",
+          "title": "创建时间"
         }
       }
     },
@@ -148,7 +159,8 @@
           "items": {
             "type": "string",
             "format": "uint64"
-          }
+          },
+          "title": "问题id"
         }
       }
     },
@@ -160,36 +172,44 @@
           "format": "uint64"
         },
         "description": {
-          "type": "string"
+          "type": "string",
+          "title": "问题描述"
         },
         "choose": {
-          "type": "string"
+          "type": "string",
+          "title": "选择 例如 “A”"
         },
         "options": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
-          }
+          },
+          "title": "选择 例如 {\"A\":\"ly\", \"B\": \"sc\", \"C\": \"hcs\"}"
         },
         "quiz_id": {
           "type": "string",
-          "format": "uint64"
+          "format": "uint64",
+          "title": "所属于测试试卷id int"
         },
         "order": {
           "type": "string",
-          "format": "uint64"
+          "format": "uint64",
+          "title": "该题目在测试试卷中的顺序 int"
         },
         "correct": {
           "type": "string",
-          "format": "uint64"
+          "format": "uint64",
+          "title": "是否正确 int 0:错误， 1: 正确 2: 未选择"
         },
         "spend": {
           "type": "string",
-          "format": "uint64"
+          "format": "uint64",
+          "title": "答题花费的时间 int"
         },
         "type": {
           "type": "string",
-          "format": "uint64"
+          "format": "uint64",
+          "title": "题目类型 int 暂时未确定枚举值"
         }
       }
     },

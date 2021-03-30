@@ -16,7 +16,7 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 			name: "MIT";			
 		};
   };
-  schemes: HTTP;
+  schemes: HTTPS;
 };
 
 service TmpLoser {
@@ -32,9 +32,11 @@ service TmpLoser {
     };
   }
 }
- 
+// 请求
 message QuizNewRequest {
+  // 用户名 string
   string user_name = 1;
+  // 试题类型 string
   string type = 2;
 }
 
@@ -46,13 +48,21 @@ message QuizNewResponse {
 
 message QuizCorrectRequest {
     uint64 question_id = 1;
+    //  问题描述
     string description = 2;
+    // 选择 例如 “A”
     string choose = 3;
+    // 选择 例如 {"A":"ly", "B": "sc", "C": "hcs"}
     map<string, string> options = 4;
+    //  所属于测试试卷id int
     uint64 quiz_id = 5;
+    // 该题目在测试试卷中的顺序 int
     uint64 order = 6;
+    // 是否正确 int 0:错误， 1: 正确 2: 未选择
     uint64 correct = 7;
+    // 答题花费的时间 int
     uint64 spend = 8;
+    // 题目类型 int 暂时未确定枚举值
     uint64 type = 9;
 }
 
@@ -63,17 +73,27 @@ message QuizCorrectResponse {
 }
 
 message Data {
+  // 历史记录id int
   uint64 history_id = 3;
+  // 用户名 string
   string user_name = 4;
+  // 问题id int
   uint64 question_id = 5;
+  // 用户的选择 string 例如 ：“A”
   string choose = 6;
+  // 测试试卷id int
   uint64 quiz_id = 7;
+  // 顺序 int
   uint64 order = 8;
+  // 是否正确 1: 错误 1: 正确 2: 未选择
   uint64 correct = 9;
+  // 答题花费的时间
   uint64 spend = 10;
+  // 创建时间
   string created_at = 11;
 }
 
 message NewQuizData {
+  // 问题id
   repeated uint64 question_id = 1;
 }
