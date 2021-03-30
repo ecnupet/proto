@@ -1,7 +1,8 @@
 swagger_gen:
 	protoc \
-	-I$(GOPATH)/src/grpc-gateway \
-	-I$(GOPATH)/src/grpc-gateway/third_party/googleapis \
+	-I$(GOPATH)/src/github.com/googleapis/googleapis \
+	-I$(GOPATH)/src/github.com/googleapis \
+	-I$(GOPATH)/src/github.com \
 	-I. \
 	--swagger_out=logtostderr=true,allow_delete_body=true:. \
 	doc/hello.proto
