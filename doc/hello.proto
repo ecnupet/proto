@@ -19,6 +19,7 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
   schemes: HTTPS;
 };
 
+
 service TmpLoser {
   rpc QuizCorrect(QuizCorrectRequest) returns (QuizCorrectResponse) {
     option (google.api.http) = {
